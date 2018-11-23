@@ -1,4 +1,4 @@
-package items;
+package equipment.items;
 
 public class Item {
 
