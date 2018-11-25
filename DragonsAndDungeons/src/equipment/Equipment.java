@@ -3,6 +3,7 @@ package equipment;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import equipment.items.ArmorClassEffector;
 import equipment.items.Item;
 
 public class Equipment {
@@ -25,8 +26,29 @@ public class Equipment {
 	}
 	
 	public int GetArmorClass() {
-		//TODO: Calculate via enabled items
-		return 0;
+		int sum = 0;
+		for (Integer i : enabledItems) {
+			if (inventory.get(i) instanceof ArmorClassEffector) {
+				sum += ((ArmorClassEffector)inventory.get(i)).GetArmorClassEffect();
+			}
+		}
+		return sum;
+	}
+	
+	public double GetTotalWeight() {
+		double sum = 0;
+		for (Item i : inventory) {
+			sum += i.GetWeight();
+		}
+		return sum;
+	}
+	
+	public double GetTotalValue() {
+		double sum = gold;
+		for (Item i : inventory) {
+			sum += i.GetValue();
+		}
+		return sum;
 	}
 	
 }
